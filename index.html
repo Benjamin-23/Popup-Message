@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PopMessage</title>
+    <style>
+        .center {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .flex {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .output {
+            border: solid gray 2px;
+            padding: 10px;
+            width: 50%;
+            text-align: center;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .close {
+            position: relative;
+            top: 0;
+            left: 40px;
+            background-color: brown;
+            color: aliceblue;
+            outline: none;
+            border: none;
+            padding: 5px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .message {
+            font-weight: 600;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        .popup {
+            border: solid grey 1px;
+            padding: 2px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        <div class="output hide">
+            <button class="close">Close</button>
+            <div class="message"> No content yet</div>
+        </div>
+        <div class="flex">
+            <div class="popup" data-message="Hello World">Click Me</div>
+            <div class="popup" data-message="JavaScript is Fun">JavaScript</div>
+            <div class="popup" data-message="Wow that cool">Click Cool</div>
+        </div>
+
+    </div>
+    <script>
+        const popups = document.querySelectorAll(".popup")
+        const popup = document.querySelector(".output")
+        const popMessage = document.querySelector(".message")
+        const closeButton = document.querySelector(".close")
+
+        closeButton.addEventListener("click", function () {
+            popup.classList.add("hide")
+        })
+        for (let i = 0; i < popups.length; i++) {
+            const element = popups[i];
+            element.addEventListener("click", function () {
+                let outPutText = this.getAttribute("data-message");
+                message(outPutText)
+            })
+        }
+        function message(outPut) {
+            popup.classList.remove("hide")
+            popMessage.innerText = outPut
+        }
+    </script>
+</body>
+
+</html>
